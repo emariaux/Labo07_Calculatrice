@@ -55,6 +55,7 @@ public class Stack<T> implements Iterable<T> {
             current = current.getNextNode();
         }
 
+
         return output.toString();
     }
 
@@ -62,11 +63,11 @@ public class Stack<T> implements Iterable<T> {
         Node<T>[] tabNode = new Node[10];
         Node<T> node = head;
         int i = 0;
-        do{
+        while(node != null){
             tabNode[i] = node;
             node = node.getNextNode();
             ++i;
-        }while(node != null);
+        }
 
         return tabNode;
     }

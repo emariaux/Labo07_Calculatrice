@@ -3,7 +3,7 @@ package util;
 import java.util.Iterator;
 
 public class Iterateur<T> implements Iterator<T> {
-    private Node<T> current;
+    public Node<T> current;
 
     public Iterateur(Stack<T> stack)
     {

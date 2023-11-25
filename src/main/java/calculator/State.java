@@ -2,63 +2,99 @@ package calculator;
 
 import util.Stack;
 
-import java.util.ArrayList;
-
 public class State {
     Stack<Double> stack = new Stack<>();
 
-    // Partie fractionnaire de la valeur
-    private ArrayList<Integer> fractionnalPart = new ArrayList<>();
-    //Partie entière de la valeur.
-    private ArrayList<Integer> integerPart = new ArrayList<>();
 
-    private double value;
+    // valeur actuelle
+    private String currentValue = "";
 
-    private boolean dot = false;
 
-    /***
-     * Set la valeur de dot
-     * @param dot   : dot valeur
-     */
-    void setDot(boolean dot) {
-        this.dot = dot;
-    }
+
 
     /***
      * Ajoute les digits dans la partie fractionnaire ou entière
      * @param i     : digit à ajouter.
      */
     void addDigit(int i){
-        if(dot){
-            fractionnalPart.addLast(i);
-        }else{
-            integerPart.addFirst(i);
-        }
+        currentValue += String.valueOf(i);
     }
 
     /***
-     * Crée la valeur selon la partie entière et fractionnaire
+     * Rajoute le point à la valeur s'il n'est pas déjà dedans
      */
-    void value(){
-        value = 0;
-
-        if(integerPart != null){
-            for(int i = 1; i <= integerPart.size() ; ++i){
-                value = integerPart.get(i) * (1^i);
-            }
-        }
-
-        if(fractionnalPart != null){
-            for(int i = 1; i <= fractionnalPart.size() ; ++i){
-                value = fractionnalPart.get(i) * (1^(-i));
-            }
+    void addDot(){
+        if(!currentValue.contains(".")){
+            currentValue += ".";
         }
     }
 
     /***
-     * Rajout value à la stack
+     * Rajout value à la stack et réinitialise value.
      */
     void addValueStack(){
-        stack.addFirst(value);
+        if(!currentValue.isEmpty()){
+            stack.addFirst(Double.valueOf(currentValue));
+            resetCurrentValue();
+        }else{
+            //TODO ERREUR
+        }
+
     }
+
+    /***
+     *
+     * @return currentValue en String
+     */
+    String getCurrentValue() {
+        return currentValue;
+    }
+
+    /***
+     *
+     * @return currentValue en double
+     */
+    Double getCurrentValueDouble() {
+        return Double.valueOf(currentValue);
+    }
+
+    /***
+     * Reset de currentValue
+     */
+    void resetCurrentValue(){
+        currentValue = "";
+    }
+
+    /***
+     * Set le résultat après une opération
+     * @param value : résultat de l'opération
+     */
+    void setResult(Double value){
+        this.stack.removeFirst();
+        this.stack.addFirst(value);
+        this.resetCurrentValue();
+    }
+
+    /***
+     * Setter current value
+     * @param currentValue
+     */
+    void setCurrentValue(String currentValue) {
+        this.currentValue = currentValue;
+    }
+
+    /***
+     * reset la stack en créant une nouvelle vide
+     */
+    void resetStack(){
+        this.stack = new Stack<>();
+    }
+
+    /***
+     * TODO ERREUR
+     */
+    void resetError(){
+
+    }
+
 }

@@ -1,14 +1,14 @@
 package calculator;
 
 public class Digit extends Operator{
-    private int value;
+    private int digit;
     public Digit(State state, int i) {
         super(state);
-        this.value = i;
+        this.digit = i;
     }
 
     @Override
     void execute() {
-
+        state.addDigit(digit);
     }
 }
