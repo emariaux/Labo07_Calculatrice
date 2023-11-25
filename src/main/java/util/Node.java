@@ -1,23 +1,37 @@
 package util;
 
-public class Node {
-    private Node nextNode;
-    private double value;
+public class Node<T> {
+    private Node<T> nextNode;
+    private T value;
 
-    public Node(Node nextNode) {
+    public Node(T value, Node<T> nextNode) {
+        this.nextNode = nextNode;
+        this.value = value;
+    }
+
+    public void setNextNode(Node<T> nextNode) {
         this.nextNode = nextNode;
     }
 
-    public Node(){
-        this(null);
+    public void setValue(T value) {
+        this.value = value;
     }
 
-    public Node getNextNode() {
+    public Node(T value){
+        this(value,null);
+    }
+
+    public T getValue() {
+        return value;
+    }
+
+    public Node<T> getNextNode() {
         return nextNode;
     }
 
     @Override
     public String toString() {
-        return String.valueOf(value);
+        //String.valueOf(value);
+        return value.toString();
     }
 }

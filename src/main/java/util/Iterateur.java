@@ -2,11 +2,12 @@ package util;
 
 import java.util.Iterator;
 
-public class Iterateur implements Iterator<Node> {
-    private Node current;
+public class Iterateur<T> implements Iterator<T> {
+    private Node<T> current;
 
-    public Iterateur(Node current) {
-        this.current = current;
+    public Iterateur(Stack<T> stack)
+    {
+        this.current = stack.getHead();
     }
 
     @Override
@@ -19,7 +20,10 @@ public class Iterateur implements Iterator<Node> {
     }
 
     @Override
-    public Node next() {
-        return current.getNextNode();
+    public T next() {
+        if(hasNext()){
+           current = current.getNextNode();
+        }
+        return current.getValue();
     }
 }
