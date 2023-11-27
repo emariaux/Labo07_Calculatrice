@@ -8,6 +8,7 @@ public class State {
 
     // valeur actuelle
     private String currentValue = "";
+    private Double storedValue = Double.NaN;
 
 
 
@@ -84,7 +85,7 @@ public class State {
     }
 
     /***
-     * reset la stack en créant une nouvelle vide
+     * reset la stack en recréant une nouvelle vide
      */
     void resetStack(){
         this.stack = new Stack<>();
@@ -97,4 +98,19 @@ public class State {
 
     }
 
+    /***
+     * Getter Stored Valze
+     * @return : stored Value
+     */
+    public Double getStoredValue() {
+        return storedValue;
+    }
+
+    /***
+     * Setter stored Value
+     * @param storedValue : new stored value
+     */
+    public void setStoredValue(Double storedValue) {
+        this.storedValue = storedValue;
+    }
 }
