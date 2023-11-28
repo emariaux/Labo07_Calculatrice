@@ -7,7 +7,7 @@ public class Clear extends Operator{
 
     @Override
     void execute() {
-        state.resetCurrentValue();
+        state.resetError();
         state.resetStack();
     }
 }

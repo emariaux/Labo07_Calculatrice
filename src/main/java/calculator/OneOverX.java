@@ -7,6 +7,12 @@ public class OneOverX extends Operator{
 
     @Override
     void execute() {
-        state.setCurrentValue(Double.toString(1. / state.getCurrentValueDouble()));
+        if(state.getError()){
+            return;
+        }
+
+        if(state.getCurrentValue().isEmpty() || state.getCurrentValueDouble() != 0.) {
+            state.setCurrentValue(Double.toString(1. / state.getCurrentValueDouble()));
+        }
     }
 }

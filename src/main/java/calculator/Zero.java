@@ -7,6 +7,9 @@ public class Zero extends Operator{
 
     @Override
     void execute() {
-        state.addDigit(0);
+        if (!state.getError()) {
+            state.addDigit(0);
+        }
+
     }
 }

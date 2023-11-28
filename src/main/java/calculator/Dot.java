@@ -7,6 +7,9 @@ public class Dot extends Operator{
 
     @Override
     void execute() {
-        state.addDot();
+        if(!state.getError()){
+            state.addDot();
+        }
+
     }
 }

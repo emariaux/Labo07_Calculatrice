@@ -5,13 +5,12 @@ import util.Stack;
 public class State {
     Stack<Double> stack = new Stack<>();
 
-
+    final String ERROR = "ERROR";
     // valeur actuelle
     private String currentValue = "";
     private Double storedValue = Double.NaN;
 
-
-
+    private boolean error = false;
 
     /***
      * Ajoute les digits dans la partie fractionnaire ou entière
@@ -95,7 +94,11 @@ public class State {
      * TODO ERREUR
      */
     void resetError(){
+        if(this.currentValue.equals(ERROR)){
+            this.resetCurrentValue();
+        }
 
+        this.error = false;
     }
 
     /***
@@ -113,4 +116,29 @@ public class State {
     public void setStoredValue(Double storedValue) {
         this.storedValue = storedValue;
     }
+
+    /**
+     * Set error 1
+     */
+    public void setError() {
+        this.currentValue="ERROR";
+        this.error = true;
+    }
+
+    /**
+     * Retourne s'il y a une erreur
+     * @return
+     */
+    public boolean cantCalculate(){
+        return error || (headNull());
+    }
+
+    public boolean getError(){
+        return error;
+    }
+
+    public boolean headNull(){
+        return stack.getHead() == null;
+    }
+
 }

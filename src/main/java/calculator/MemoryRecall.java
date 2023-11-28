@@ -8,12 +8,16 @@ public class MemoryRecall extends Operator {
 
     @Override
     void execute() {
+        if(state.getError()){
+            return;
+        }
+
         if(!state.getStoredValue().isNaN()){
             state.addValueStack();
             state.setCurrentValue(state.getStoredValue().toString());
             state.setStoredValue(Double.NaN);
         }else{
-            //TODO ERREUR pas de valeur stockée
+            state.setError();
         }
     }
 }

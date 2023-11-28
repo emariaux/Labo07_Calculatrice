@@ -7,6 +7,9 @@ public class Enter extends Operator{
 
     @Override
     void execute() {
-        state.addValueStack();
+        if(!state.getError()){
+            state.addValueStack();
+        }
+
     }
 }

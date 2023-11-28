@@ -7,21 +7,25 @@ public class Multiply extends Operator{
 
     @Override
     void execute() {
-        double value;
-        if(state.stack.getHead() != null && !state.getCurrentValue().isEmpty()){
-            value = state.getCurrentValueDouble() * state.stack.getHead().getValue();
+        if(state.cantCalculate()){
+            state.setError();
+            return;
+        }
+
+        if(!state.getCurrentValue().isEmpty()){
+            double value = state.getCurrentValueDouble() * state.stack.getHead().getValue();
             state.setResult(value);
         }
-        else if (state.stack.getHead() != null) {
+        else {
             state.setCurrentValue(Double.toString(state.stack.getHead().getValue()));
             state.stack.removeFirst();
-            if(state.stack.getHead() != null){
-                value = state.stack.getHead().getValue() * state.getCurrentValueDouble();
+
+            if(!state.headNull()){
+                double value = state.getCurrentValueDouble() * state.stack.getHead().getValue();
                 state.setResult(value);
             }else{
-                state.setResult(state.getCurrentValueDouble());
-                //TODO ERREUR Uniquement 1 valeur de la stack
-
+                state.addValueStack();
+                state.setError();
             }
         }
     }

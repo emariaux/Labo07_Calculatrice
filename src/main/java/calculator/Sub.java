@@ -7,19 +7,26 @@ public class Sub extends Operator{
 
     @Override
     void execute() {
+
+        if(state.cantCalculate()){
+            state.setError();
+            return;
+        }
+
         double value;
-        if(state.stack.getHead() != null && !state.getCurrentValue().isEmpty()){
+        if(!state.getCurrentValue().isEmpty()){
             value = state.stack.getHead().getValue() - state.getCurrentValueDouble();
             state.setResult(value);
-        }else if (state.stack.getHead() != null) {
+        }else{
             state.setCurrentValue(Double.toString(state.stack.getHead().getValue()));
             state.stack.removeFirst();
             if(state.stack.getHead() != null){
                 value = state.stack.getHead().getValue() - state.getCurrentValueDouble();
                 state.setResult(value);
             }else{
-                state.setResult(state.getCurrentValueDouble());
-                //TODO ERREUR Uniquement 1 valeur de la stack
+                state.addValueStack();
+
+                state.setError();
 
             }
         }

@@ -8,10 +8,12 @@ public class PlusMinus extends Operator{
     @Override
     void execute() {
 
+        if(state.getError()){
+            return;
+        }
+
         if(!state.getCurrentValue().isEmpty()) {
             state.setCurrentValue(Double.toString(state.getCurrentValueDouble() * (-1.)));
-        }else {
-            //TODO ERREUR
         }
     }
 }

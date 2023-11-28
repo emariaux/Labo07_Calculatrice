@@ -9,6 +9,9 @@ public class Digit extends Operator{
 
     @Override
     void execute() {
-        state.addDigit(digit);
+        if(!state.getError()){
+            state.addDigit(digit);
+        }
+
     }
 }

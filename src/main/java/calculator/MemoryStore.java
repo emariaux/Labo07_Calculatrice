@@ -7,11 +7,15 @@ public class MemoryStore extends Operator{
 
     @Override
     void execute() {
+
+        if(state.getError()){
+            return;
+        }
+
+        //Si pas de valeur aucune action est effectuée
         if(!state.getCurrentValue().isEmpty()){
             state.setStoredValue(state.getCurrentValueDouble());
             state.setCurrentValue("");
-        }else{
-            //TODO Erreur pas de valeur à stocker
         }
     }
 }
