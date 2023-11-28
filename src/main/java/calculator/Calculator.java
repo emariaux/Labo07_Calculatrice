@@ -17,8 +17,6 @@ public class Calculator {
         operator.put("pow", new Sqare(state));
         operator.put("CE", new ClearError(state));
         operator.put("C", new Clear(state));
-
-
     }
 
 
@@ -39,30 +37,35 @@ public class Calculator {
         }
     }
 
+    private void performOp(String input){
+        if (operator.containsKey(input)) {
+            operator.get(input).execute();
+        } else if (isNumeric(input)) {
+            if (!state.getCurrentValue().isEmpty()) {
+                state.addValueStack();
+                state.setCurrentValue(input);
+            } else {
+                state.setCurrentValue(input);
+            }
+        }
+    }
+
     void execute(){
         String input;
         Scanner console = new Scanner(System.in);
 
-        while((input = console.nextLine()) != null && !input.contains("exit")){
-
-            if(state.cantCalculate()){
-                if(operator.containsKey(input)){
-                    operator.get(input).execute();
-                }
-                else if(isNumeric(input)) {
-                    if(!state.getCurrentValue().isEmpty()){
-                        state.addValueStack();
-                        state.setCurrentValue(input);
-                    }
-                    else {
-                        state.setCurrentValue(input);
-                    }
-                }
+        while((input = console.nextLine()) != null && !input.equals("exit")) {
+            if(input.equals("CE") || input.equals("C")){
+                operator.get(input).execute();
             }
 
+            if(state.getError()){
+                continue;
+            }
+
+            performOp(input);
             display();
         }
-
     }
 
     public static void main(String ... args) {
