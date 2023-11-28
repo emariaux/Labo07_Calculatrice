@@ -90,9 +90,7 @@ public class State {
         this.stack = new Stack<>();
     }
 
-    /***
-     * TODO ERREUR
-     */
+
     void resetError(){
         if(this.currentValue.equals(ERROR)){
             this.resetCurrentValue();
@@ -105,7 +103,7 @@ public class State {
      * Getter Stored Valze
      * @return : stored Value
      */
-    public Double getStoredValue() {
+    Double getStoredValue() {
         return storedValue;
     }
 
@@ -113,14 +111,14 @@ public class State {
      * Setter stored Value
      * @param storedValue : new stored value
      */
-    public void setStoredValue(Double storedValue) {
+    void setStoredValue(Double storedValue) {
         this.storedValue = storedValue;
     }
 
     /**
      * Set error 1
      */
-    public void setError() {
+    void setError() {
         this.currentValue="ERROR";
         this.error = true;
     }
@@ -129,19 +127,19 @@ public class State {
      * Retourne s'il y a une erreur
      * @return
      */
-    public boolean cantCalculate(){
+    boolean cantCalculate(){
         return error || (headNull());
     }
 
-    public boolean getError(){
+    boolean getError(){
         return error;
     }
 
-    public boolean headNull(){
+    boolean headNull(){
         return stack.getHead() == null;
     }
 
-    public Stack<Double> getStack() {
+    Stack<Double> getStack() {
         return stack;
     }
 }
