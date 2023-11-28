@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Calculator {
     private State state = new State();
-    HashMap<String, Operator> operator = new HashMap<String, Operator>();
+    private HashMap<String, Operator> operator = new HashMap<String, Operator>();
 
 
     Calculator() {
@@ -50,7 +50,7 @@ public class Calculator {
         }
     }
 
-    void execute(){
+    private void execute(){
         String input;
         Scanner console = new Scanner(System.in);
 
