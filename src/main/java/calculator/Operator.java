@@ -1,6 +1,6 @@
 package calculator;
 
-abstract class Operator
+public abstract class Operator
 {
   State state;
   public Operator(State state){

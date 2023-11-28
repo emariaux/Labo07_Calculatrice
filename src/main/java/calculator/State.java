@@ -141,4 +141,7 @@ public class State {
         return stack.getHead() == null;
     }
 
+    public Stack<Double> getStack() {
+        return stack;
+    }
 }

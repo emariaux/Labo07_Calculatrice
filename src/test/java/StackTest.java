@@ -49,6 +49,6 @@ public class StackTest {
         stack.addFirst(2.);
         stack.addFirst(3.);
 
-        assertEquals ("3.0\n2.0\n1.0\n", stack.toString());
+        assertEquals ("3.0 2.0 1.0 ", stack.toString());
     }
 }
