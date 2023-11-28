@@ -39,7 +39,7 @@ public class JCalculator extends JFrame
 
     jNumber.setText(state.getCurrentValue());
     if(state.stack.getHead() != null) {
-      jStack.setListData(state.stack.getTabStack());
+      jStack.setListData(state.stack.toArray());
     }else{
       jStack.setListData(empty);
     }

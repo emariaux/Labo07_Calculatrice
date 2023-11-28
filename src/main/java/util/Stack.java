@@ -1,8 +1,6 @@
 package util;
 
 import java.util.Iterator;
-import java.util.Spliterator;
-import java.util.function.Consumer;
 
 public class Stack<T> implements Iterable<T> {
 
@@ -59,12 +57,12 @@ public class Stack<T> implements Iterable<T> {
         return output.toString();
     }
 
-    public Node<T>[] getTabStack(){
-        Node<T>[] tabNode = new Node[10];
+    public Object[] toArray(){
+        Object[] tabNode =  new Object[this.size];
         Node<T> node = head;
         int i = 0;
         while(node != null){
-            tabNode[i] = node;
+            tabNode[i] = node.getValue();
             node = node.getNextNode();
             ++i;
         }

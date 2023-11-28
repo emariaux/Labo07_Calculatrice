@@ -5,7 +5,7 @@ import util.Stack;
 public class State {
     Stack<Double> stack = new Stack<>();
 
-    final String ERROR = "ERROR";
+    private final String ERROR = "ERROR";
     // valeur actuelle
     private String currentValue = "";
     private Double storedValue = Double.NaN;
