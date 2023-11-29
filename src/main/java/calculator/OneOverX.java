@@ -11,7 +11,7 @@ public class OneOverX extends Operator{
             return;
         }
 
-        if(state.getCurrentValue().isEmpty() || state.getCurrentValueDouble() != 0.) {
+        if(!state.getCurrentValue().isEmpty() && state.getCurrentValueDouble() != 0.) {
             state.setCurrentValue(Double.toString(1. / state.getCurrentValueDouble()));
         }
     }

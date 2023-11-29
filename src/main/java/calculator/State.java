@@ -34,7 +34,7 @@ public class State {
      */
     void addValueStack(){
         if(!currentValue.isEmpty()){
-            stack.addFirst(Double.valueOf(currentValue));
+            stack.add(Double.valueOf(currentValue));
             resetCurrentValue();
         }else{
             //TODO ERREUR
@@ -71,7 +71,7 @@ public class State {
      */
     void setResult(Double value){
         this.stack.removeFirst();
-        this.stack.addFirst(value);
+        this.stack.add(value);
         this.resetCurrentValue();
     }
 
@@ -92,10 +92,7 @@ public class State {
 
 
     void resetError(){
-        if(this.currentValue.equals(ERROR)){
-            this.resetCurrentValue();
-        }
-
+        this.resetCurrentValue();
         this.error = false;
     }
 
